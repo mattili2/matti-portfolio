@@ -1,0 +1,10 @@
+# Reverse proxy in front of the Next.js container (port 3000).
+# Install Caddy on the 轻量服务器, replace the host, then:
+#   sudo caddy run --config /etc/caddy/Caddyfile
+#
+# Caddy obtains HTTPS automatically when DNS already points here.
+
+cn.yuxinli.com {
+	encode gzip
+	reverse_proxy 127.0.0.1:3000
+}

@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted: #a3a3a3;
+  --border: #222222;
+  /* Header/nav gutter (desktop + mobile) */
+  --page-pad: 40px;
+  /* Main content / footer gutter — 80px desktop, 40px below md */
+  --content-pad: 80px;
+  /* Matches Header min-h (64px all breakpoints) */
+  --header-h: 64px;
+  --card-max: 720px;
+  /* Shared body copy: bio + project card description */
+  --body-size: 15px;
+  --body-weight: 500;
+  --body-leading: 1.5;
+  --body-color: #333333;
+  /* Shared fade for page enter + mobile menu open/close */
+  --fade-ms: 400ms;
+  /* Global nav chrome: default / hover / selected */
+  --nav-muted: rgb(0 0 0 / 0.5);
+  --nav-hover-opacity: 0.5;
+  --nav-weight: 400;
+  --nav-weight-selected: var(--nav-weight);
+  --nav-disabled: rgb(0 0 0 / 0.2);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-figtree), "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
+  --breakpoint-md: 810px;
+}
+
+@media (max-width: 809px) {
+  :root {
+    --content-pad: 40px;
+  }
+}
+
+/* Case study / project detail — fluid gutters (nav stays --page-pad).
+   pad = clamp(40px, 0.2 * (100vw - 400px), 200px)
+       ≡ 40px + 160 * (100vw - 600px) / 800
+   Viewport: ≤600 → 40px · 800 → 80px · ≥1400 → 200px
+   Dots nav: hide when pad ≤ 80px (vw ≤ 800); show when vw > 800. */
+.case-study {
+  --content-pad: clamp(40px, calc(0.2 * (100vw - 400px)), 200px);
+}
+
+/* Whale (/proj/1) and other dark case studies — black surface, light type.
+   Header stays white with dark type (Framer). Nav chrome tokens stay light-mode
+   for the header; footer + case bottom nav invert via scoped overrides. */
+body.case-theme-dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --muted: #a3a3a3;
+  --border: #333333;
+  --body-color: #e8e8e8;
+}
+
+/* Site chrome only. Do NOT match case-study content <header> inside
+   main — that made Whale title/meta black-on-black. */
+body.case-theme-dark > header.site-header {
+  --foreground: #000000;
+  --nav-muted: rgb(0 0 0 / 0.5);
+  --nav-disabled: rgb(0 0 0 / 0.2);
+  color: #000000;
+}
+
+body.case-theme-dark footer {
+  --nav-muted: rgb(255 255 255 / 0.55);
+  --nav-disabled: rgb(255 255 255 / 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Auto on route changes (instant jump to top). In-page smooth scroll
+   is done via JS (e.g. CaseStudyDotsNav), not global CSS. */
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.body-copy {
+  font-size: var(--body-size);
+  font-weight: var(--body-weight);
+  line-height: var(--body-leading);
+  color: var(--body-color);
+}
+
+/* Nav chrome — header, lang switch, case-study bottom nav, etc. */
+.nav-chrome {
+  color: var(--nav-muted);
+  font-weight: var(--nav-weight);
+  transition: opacity 150ms ease;
+}
+
+.nav-chrome:hover {
+  opacity: var(--nav-hover-opacity);
+}
+
+.nav-chrome-selected {
+  color: var(--foreground);
+  font-weight: var(--nav-weight);
+  pointer-events: none;
+}
+
+/* Hover fade only (brand / compound links keep their own color) */
+.nav-chrome-hover {
+  transition: opacity 150ms ease;
+}
+
+.nav-chrome-hover:hover {
+  opacity: var(--nav-hover-opacity);
+}
+
+.nav-chrome-muted {
+  color: var(--nav-muted);
+}
+
+.nav-chrome-disabled {
+  color: var(--nav-disabled);
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Dark case study (Whale): black page surface + light content.
+   Header keeps its white bar + dark type (Framer). */
+body.case-theme-dark {
+  background: #000000;
+}
+
+body.case-theme-dark main,
+body.case-theme-dark footer {
+  --foreground: #ffffff;
+  --muted: #a3a3a3;
+  --body-color: #ffffff;
+  --border: #333333;
+  color: #ffffff;
+}
+
+body.case-theme-dark .case-study {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* Portaled bottom nav on dark case studies */
+.case-study-chrome-dark.nav-chrome {
+  color: rgb(255 255 255 / 0.55);
+}
+
+.case-study-chrome-dark.nav-chrome-disabled {
+  color: rgb(255 255 255 / 0.25);
+}
+
+/* Soft page enter — opacity only (no translate; avoids scroll/flip feel) */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-enter {
+  animation: page-enter var(--fade-ms) ease;
+}
+
+/* Soft bounce hint for homepage scroll-down chevron */
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
+
+/* Gallery: one full-viewport snap section per work (header inset is section padding). */
+html.gallery-y-snap {
+  scroll-snap-type: y mandatory;
+}
+
+html.gallery-y-snap footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
