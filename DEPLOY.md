@@ -107,7 +107,9 @@ Same codebase; no static-export rewrite.
 - [ ] Smoke `/zh` and `/en` from CN + overseas if possible
 - [ ] Leave Vercel URL live as backup
 
-**On next `git push` to `main`:** Cloudflare Workers Builds should clone the repo, run the configured build/deploy command (ideally `npm run deploy`), and promote a new Active Deployment on https://matti-portfolio.yxi2nlii.workers.dev. Watch **Deployments → Build history** in the dashboard (or GitHub check runs from the Cloudflare Workers & Pages app).
+**On `git push` to `main`:** Cloudflare Workers Builds clones the repo, runs the configured build/deploy command (should be `npm run deploy`), and promotes a new Active Deployment on https://matti-portfolio.yxi2nlii.workers.dev. Watch **Deployments → Build history** (or GitHub check runs from the Cloudflare Workers & Pages app).
+
+**Verified 2026-08-13:** Push `1621d58` triggered GitHub check `Workers Builds: matti-portfolio` (connection is live). That first build **failed in ~0s** — open [build `6def30c9…`](https://dash.cloudflare.com/006b703c9aa25f1952e83587c64da161/workers/services/view/matti-portfolio/production/builds/6def30c9-8aef-4712-899b-0e11f2ee383b) and fix Build settings (common: stale **Build API token**, or build/deploy command not set to `npm run deploy`). Live site remains the earlier Wrangler deploy until a Git build succeeds.
 
 ### Later
 
