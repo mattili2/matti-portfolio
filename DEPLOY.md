@@ -103,9 +103,11 @@ Same codebase; no static-export rewrite.
 - [x] `npx wrangler login` (already authenticated as yxi2nlii@gmail.com)
 - [x] `npm run deploy` → https://matti-portfolio.yxi2nlii.workers.dev
 - [x] Push to GitHub → https://github.com/mattili2/matti-portfolio
-- [ ] Connect Worker **Builds** → GitHub (dashboard steps above)
+- [x] Connect Worker **Builds** → GitHub (`mattili2/matti-portfolio` ↔ Worker `matti-portfolio`)
 - [ ] Smoke `/zh` and `/en` from CN + overseas if possible
 - [ ] Leave Vercel URL live as backup
+
+**On next `git push` to `main`:** Cloudflare Workers Builds should clone the repo, run the configured build/deploy command (ideally `npm run deploy`), and promote a new Active Deployment on https://matti-portfolio.yxi2nlii.workers.dev. Watch **Deployments → Build history** in the dashboard (or GitHub check runs from the Cloudflare Workers & Pages app).
 
 ### Later
 
