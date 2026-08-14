@@ -40,7 +40,12 @@ export type CaseStudyBlock =
       /** Stub / “more content coming” note — centered with extra top gap */
       variant?: "placeholder";
     }
-  | { type: "subheading"; text: string }
+  | {
+      type: "subheading";
+      text: string;
+      /** Optional leading icon (e.g. Whale reflection rows). */
+      icon?: Pick<CaseStudyImage, "src" | "alt" | "width" | "height">;
+    }
   | { type: "list"; items: CaseStudyListItem[] }
   | { type: "metaRows"; rows: CaseStudyMetaRow[] }
   | {
@@ -111,4 +116,6 @@ export type CaseStudy = CaseStudyCopy & {
   themeColor: string;
   /** Page surface: Whale uses dark (black bg + light text). Defaults to light. */
   theme?: CaseStudyTheme;
+  /** Embed interactive web demo inline (e.g. MonoLOG on /proj/5). */
+  demoEmbed?: boolean;
 };

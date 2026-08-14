@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { CaseStudyBottomNav } from "@/components/CaseStudyBottomNav";
+import { MonologDemo } from "@/components/monolog-demo/MonologDemo";
 import {
   CaseStudyDotsNav,
   type CaseStudyNavItem,
@@ -155,6 +156,35 @@ function CaseStudyBlocks({
               </p>
             );
           case "subheading":
+            if (block.icon) {
+              const iconDisplayWidth =
+                block.icon.width > block.icon.height ? "w-[68px]" : "w-16";
+              return (
+                <div
+                  key={key}
+                  className="mt-2 flex w-full items-center gap-5"
+                >
+                  <div
+                    className={`relative shrink-0 ${iconDisplayWidth}`}
+                    style={{
+                      aspectRatio: `${block.icon.width} / ${block.icon.height}`,
+                    }}
+                  >
+                    <Image
+                      src={block.icon.src}
+                      alt=""
+                      width={block.icon.width}
+                      height={block.icon.height}
+                      className="h-auto w-full object-contain"
+                      aria-hidden
+                    />
+                  </div>
+                  <h3 className="min-w-0 flex-1 text-[17px] font-semibold tracking-[0.02em] text-foreground md:text-lg">
+                    {block.text}
+                  </h3>
+                </div>
+              );
+            }
             return (
               <h3
                 key={key}
@@ -424,6 +454,18 @@ export function CaseStudyView({ study, locale }: CaseStudyViewProps) {
         >
           <p className="body-copy w-full">{study.intro}</p>
         </div>
+
+        {study.demoEmbed ? (
+          <div className="mt-6 flex w-full flex-col gap-5 md:mt-10">
+            <div className="flex flex-col gap-1">
+              <h2 className="text-2xl font-semibold tracking-[0.02em] md:text-[28px]">
+                {dict.caseStudyInteractiveDemo}
+              </h2>
+            </div>
+            <MonologDemo locale={locale} embedded />
+            <p className="text-center text-sm text-muted">{dict.caseStudyInteractiveDemoHint}</p>
+          </div>
+        ) : null}
       </header>
 
       <div className="flex w-full flex-col gap-16 px-[var(--content-pad)] pb-16 md:gap-20 md:pb-24">

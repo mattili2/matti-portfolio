@@ -101,13 +101,15 @@ a {
   text-decoration: none;
 }
 
-button {
-  font-family: inherit;
-  color: inherit;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+@layer base {
+  button {
+    font-family: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
 }
 
 .body-copy {
@@ -210,6 +212,19 @@ body.case-theme-dark .case-study {
 @media (prefers-reduced-motion: reduce) {
   .page-enter {
     animation: none;
+  }
+}
+
+/* MonoLOG demo — hide the system cursor; DemoCursor renders the themed dot + trail. */
+.monolog-demo,
+.monolog-demo * {
+  cursor: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .monolog-demo,
+  .monolog-demo * {
+    cursor: default !important;
   }
 }
 

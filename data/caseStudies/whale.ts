@@ -166,6 +166,28 @@ const img = {
   },
 } as const satisfies Record<string, CaseStudyImage>;
 
+/** Framer /proj/1 reflection section icons (128×128, 64px display). */
+const reflectIcons = {
+  consistency: {
+    src: "/images/whale/reflect-consistency.png",
+    alt: "",
+    width: 128,
+    height: 128,
+  },
+  business: {
+    src: "/images/whale/reflect-business.png",
+    alt: "",
+    width: 128,
+    height: 128,
+  },
+  technical: {
+    src: "/images/whale/reflect-technical.png",
+    alt: "",
+    width: 136,
+    height: 128,
+  },
+} as const satisfies Record<string, Pick<CaseStudyImage, "src" | "alt" | "width" | "height">>;
+
 const zh: CaseStudyCopy = {
   category: "电视操作系统 UX 设计",
   title: "Whale TV OS 体验优化",
@@ -408,7 +430,7 @@ const zh: CaseStudyCopy = {
           type: "paragraph",
           text: "在这个项目中，我认为最大的挑战是在不同限制之间不断寻找平衡。",
         },
-        { type: "subheading", text: "设计与系统一致性" },
+        { type: "subheading", text: "设计与系统一致性", icon: reflectIcons.consistency },
         {
           type: "paragraph",
           text: "在加入新功能时，不同板块也需要保持清晰的定位和体验，避免因设计过于统一而导致同质化。同时需要保证交互流程自然流畅，还要遵循系统已有的交互逻辑和用户心智模型，降低学习成本。",
@@ -417,7 +439,7 @@ const zh: CaseStudyCopy = {
           type: "paragraph",
           text: "例如，新增 Apps「快捷编辑」功能时，需要延续 Home 页编辑模式的交互逻辑；首页卡片跳过详情页直接播放，需要权衡与系统其他页面交互一致性的影响。",
         },
-        { type: "subheading", text: "设计与商业需求" },
+        { type: "subheading", text: "设计与商业需求", icon: reflectIcons.business },
         {
           type: "paragraph",
           text: "设计决策在提升用户体验的同时，可能会影响商业目标和要求。",
@@ -430,7 +452,7 @@ const zh: CaseStudyCopy = {
           type: "paragraph",
           text: "部分商业合作的需求，例如固定板块位置、应用不可置灰或不可卸载等，往往需要单独处理。例如不可卸载App与普通App。",
         },
-        { type: "subheading", text: "设计与技术实现" },
+        { type: "subheading", text: "设计与技术实现", icon: reflectIcons.technical },
         {
           type: "paragraph",
           text: "设计方案并不总能按照理想状态落地，经常会出现“这个目前做不了”或者“只能换一种逻辑实现”。",
@@ -700,7 +722,7 @@ const en: CaseStudyCopy = {
           type: "paragraph",
           text: "The biggest challenge was continually balancing competing constraints.",
         },
-        { type: "subheading", text: "Design and System Consistency" },
+        { type: "subheading", text: "Design and System Consistency", icon: reflectIcons.consistency },
         {
           type: "paragraph",
           text: "When adding features, sections still need clear roles—avoiding sameness from over-unifying—while keeping flows natural and respecting existing interaction logic and mental models.",
@@ -709,7 +731,7 @@ const en: CaseStudyCopy = {
           type: "paragraph",
           text: "For example, Apps “quick edit” needed to continue Home’s edit-mode logic; skipping the detail page for direct play on Home had to be weighed against consistency with other pages.",
         },
-        { type: "subheading", text: "Design and Business Needs" },
+        { type: "subheading", text: "Design and Business Needs", icon: reflectIcons.business },
         {
           type: "paragraph",
           text: "UX improvements can conflict with commercial goals.",
@@ -722,7 +744,7 @@ const en: CaseStudyCopy = {
           type: "paragraph",
           text: "Some partnership constraints—fixed module placement, apps that cannot be dimmed or uninstalled—need special handling, such as non-removable vs regular apps.",
         },
-        { type: "subheading", text: "Design and Technical Feasibility" },
+        { type: "subheading", text: "Design and Technical Feasibility", icon: reflectIcons.technical },
         {
           type: "paragraph",
           text: "Designs rarely ship unchanged—“not possible yet” or “only with a different logic” is common.",

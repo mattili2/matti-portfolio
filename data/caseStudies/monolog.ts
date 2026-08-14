@@ -827,6 +827,7 @@ export function getMonologCaseStudy(
     id: monologCaseStudy.id,
     hero: monologCaseStudy.hero,
     themeColor: monologCaseStudy.themeColor,
+    demoEmbed: true,
     ...copy,
   };
 }

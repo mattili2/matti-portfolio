@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CaseStudyEntryRestore } from "@/components/CaseStudyEntryRestore";
+import { HeroPortraitPad } from "@/components/HeroPortraitPad";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ScrollDownArrow } from "@/components/ScrollDownArrow";
 import { getDictionary } from "@/data/dictionary";
@@ -21,34 +21,35 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <div className="w-full">
       <CaseStudyEntryRestore />
-      <section className="flex flex-col items-center px-[var(--content-pad)] pb-10 pt-[84px] md:pt-[190px]">
-        <div className="relative mx-auto h-auto w-[min(100%,400px)]">
-          <Image
-            src="/images/hero.png"
+      <section className="flex flex-col items-center pb-10 pt-[84px] md:pt-[190px]">
+        <div className="w-full px-[var(--content-pad)]">
+          <HeroPortraitPad
             alt={dict.heroAlt}
-            width={1019}
-            height={1017}
-            priority
-            sizes="400px"
-            className="h-auto w-full"
+            clearLabel={dict.heroDrawClear}
+            colorLabel={dict.heroDrawColor}
+            sendLabel={dict.heroDrawSend}
           />
         </div>
 
-        <p className="mt-0 text-center text-lg font-semibold tracking-tight md:text-xl">
-          UX Designer <span className="mx-2 font-normal text-muted">|</span> UX
-          Researcher
-        </p>
+        <div className="w-full px-[var(--content-pad)]">
+          <p className="mt-0 text-center text-lg font-semibold tracking-tight md:text-xl">
+            UX Designer <span className="mx-2 font-normal text-muted">|</span> UX
+            Researcher
+          </p>
 
-        <div className="mt-6 w-full space-y-1 text-center text-[16px] font-[var(--body-weight)] leading-[var(--body-leading)] text-[var(--body-color)]">
-          {dict.bio.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
+          <div className="mt-6 w-full space-y-1 text-center text-[16px] font-[var(--body-weight)] leading-[var(--body-leading)] text-[var(--body-color)]">
+            {dict.bio.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+
+          <div className="flex w-full justify-center">
+            <ScrollDownArrow
+              targetId="selected-projects"
+              label={dict.scrollToProjects}
+            />
+          </div>
         </div>
-
-        <ScrollDownArrow
-          targetId="selected-projects"
-          label={dict.scrollToProjects}
-        />
       </section>
 
       <section id="selected-projects" className="px-[var(--content-pad)] pb-10 pt-16 md:pt-24">

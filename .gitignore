@@ -41,6 +41,9 @@ yarn-error.log*
 .dev.vars
 .wrangler
 
+# local doodle inbox (homepage “send to author”)
+.data
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
