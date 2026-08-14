@@ -72,7 +72,7 @@ export async function POST(request: Request) {
     const form = await request.formData();
     const image = form.get("image");
 
-    if (!(image instanceof File) && !(image instanceof Blob)) {
+    if (image == null || typeof image === "string") {
       return NextResponse.json({ error: "Missing image" }, { status: 400 });
     }
 
@@ -81,10 +81,9 @@ export async function POST(request: Request) {
     }
 
     const bytes = await image.arrayBuffer();
-    const filename =
-      image instanceof File && image.name.endsWith(".png")
-        ? image.name.replace(/[^\w.-]/g, "_")
-        : `hero-doodle-${Date.now()}.png`;
+    const filename = image.name.endsWith(".png")
+      ? image.name.replace(/[^\w.-]/g, "_")
+      : `hero-doodle-${Date.now()}.png`;
 
     const webhook = process.env.HERO_DOODLE_WEBHOOK_URL?.trim();
     const resendKey = process.env.RESEND_API_KEY?.trim();
