@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const MAX_BYTES = 2_500_000;
-const AUTHOR_EMAIL = "mattili2@outlook.com";
+const AUTHOR_EMAIL = "yxi2nlii@gmail.com";
 
 async function sendDiscordWebhook(webhookUrl: string, bytes: ArrayBuffer, filename: string) {
   const form = new FormData();
@@ -55,6 +55,7 @@ async function sendResendEmail(apiKey: string, bytes: ArrayBuffer, filename: str
 
   if (!response.ok) {
     const detail = await response.text();
+    console.error("[hero-doodle] Resend error:", detail);
     throw new Error(`Resend failed (${response.status}): ${detail}`);
   }
 }
