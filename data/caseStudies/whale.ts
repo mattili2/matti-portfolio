@@ -48,7 +48,7 @@ const img = {
     widthPct: 32,
   },
   homeMineDemo: {
-    src: "/images/whale/home-mine-demo.gif",
+    src: "/images/whale/home-mine-demo.mp4",
     alt: "Home personal-content experience demo",
     width: 1138,
     height: 640,
@@ -56,7 +56,7 @@ const img = {
     widthPct: 67,
   },
   bannerPreviewDemo: {
-    src: "/images/whale/banner-preview-demo.gif",
+    src: "/images/whale/banner-preview-demo.mp4",
     alt: "Banner focus card preview interaction",
     width: 1142,
     height: 640,
@@ -69,7 +69,7 @@ const img = {
     height: 350,
   },
   defaultFocusDemo: {
-    src: "/images/whale/default-focus-demo.gif",
+    src: "/images/whale/default-focus-demo.mp4",
     alt: "Default focus moved to top Banner",
     width: 1142,
     height: 640,
@@ -104,7 +104,7 @@ const img = {
     widthPct: 38,
   },
   discoveryTimeDemo: {
-    src: "/images/whale/discovery-time-demo.gif",
+    src: "/images/whale/discovery-time-demo.mp4",
     alt: "Discovery browsing experience demo",
     width: 640,
     height: 788,
@@ -132,21 +132,21 @@ const img = {
     height: 798,
   },
   schemeA: {
-    src: "/images/whale/scheme-a.gif",
+    src: "/images/whale/scheme-a.mp4",
     alt: "Scheme A: push content down on long-press edit",
     width: 1142,
     height: 640,
     widthPct: 73,
   },
   schemeB: {
-    src: "/images/whale/scheme-b.gif",
+    src: "/images/whale/scheme-b.mp4",
     alt: "Scheme B: dim neighboring rows on long-press edit",
     width: 1142,
     height: 640,
     widthPct: 73,
   },
   schemeC: {
-    src: "/images/whale/scheme-c.gif",
+    src: "/images/whale/scheme-c.mp4",
     alt: "Scheme C: centered modal for app management",
     width: 1142,
     height: 640,

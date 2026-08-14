@@ -78,7 +78,7 @@ const galleryBases: GalleryBlockBase[] = [
     date: "2026.06.25",
     zh: { caption: "有了瞬间，就想要永远。" },
     en: { caption: "Once there's a moment, you want forever." },
-    src: "/videos/gallery-moment.mov",
+    src: "/videos/gallery-moment.mp4",
     poster: "/images/gallery/moment-poster.png",
     width: 1929,
     height: 2727,

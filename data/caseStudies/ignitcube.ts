@@ -29,7 +29,7 @@ const zh: CaseStudyCopy = {
       blocks: [
         {
           type: "video",
-          src: "/videos/ignitcube.mov",
+          src: "/videos/ignitcube.mp4",
           size: "lg",
           width: 854,
           height: 480,
@@ -66,7 +66,7 @@ const en: CaseStudyCopy = {
       blocks: [
         {
           type: "video",
-          src: "/videos/ignitcube.mov",
+          src: "/videos/ignitcube.mp4",
           size: "lg",
           width: 854,
           height: 480,

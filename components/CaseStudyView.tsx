@@ -6,13 +6,14 @@ import {
   type CaseStudyNavItem,
 } from "@/components/CaseStudyDotsNav";
 import { CaseStudyThemeEffect } from "@/components/CaseStudyThemeEffect";
+import { InViewVideo } from "@/components/InViewMedia";
 import type { CaseStudy, CaseStudyBlock, CaseStudyImage } from "@/data/caseStudies";
 import { getNextCaseStudyId, getPrevCaseStudyId } from "@/data/caseStudies";
 import type { CaseStudyImageSize } from "@/data/caseStudies/types";
 import { getDictionary } from "@/data/dictionary";
 import { getProjectById } from "@/data/projects";
 import type { Locale } from "@/lib/i18n";
-import { mediaSrc } from "@/lib/media";
+import { isGifSrc, isVideoSrc, mediaSrc } from "@/lib/media";
 
 type CaseStudyViewProps = {
   study: CaseStudy;
@@ -54,6 +55,40 @@ function sectionNavLabel(section: CaseStudy["sections"][number]): string {
   return section.navLabel ?? section.title;
 }
 
+function CaseStudyVisual({
+  image,
+  sizes,
+}: {
+  image: CaseStudyImage;
+  sizes: string;
+}) {
+  if (isVideoSrc(image.src)) {
+    return (
+      <InViewVideo
+        className="h-auto w-full object-cover"
+        src={mediaSrc(image.src)}
+        mode="loop"
+        ariaLabel={image.alt}
+        width={image.width}
+        height={image.height}
+      />
+    );
+  }
+
+  return (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      unoptimized={isGifSrc(image.src)}
+      loading="lazy"
+      sizes={sizes}
+      className="h-auto w-full object-cover"
+    />
+  );
+}
+
 function CaseStudyImageFigure({
   image,
   caption,
@@ -65,35 +100,26 @@ function CaseStudyImageFigure({
   className?: string;
   style?: CSSProperties;
 }) {
-  const animated = /\.gif$/i.test(image.src);
   const size = image.size ?? "full";
+  const sizes =
+    image.widthPct != null
+      ? `(max-width: 809px) 100vw, ${Math.round((image.widthPct / 100) * 1200)}px`
+      : size === "full"
+        ? "100vw"
+        : size === "lg"
+          ? "(max-width: 809px) 100vw, 1040px"
+          : size === "md"
+            ? "(max-width: 809px) 100vw, 680px"
+            : size === "xs"
+              ? "(max-width: 809px) 40vw, 160px"
+              : "(max-width: 809px) 100vw, 440px";
   return (
     <figure className={className ?? "mt-2 w-full"} style={style}>
       <div
         className={`${imageFrameClass()} ${imageSizeClass(image)}`}
         style={imageWidthStyle(image)}
       >
-        <Image
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          unoptimized={animated}
-          sizes={
-            image.widthPct != null
-              ? `(max-width: 809px) 100vw, ${Math.round((image.widthPct / 100) * 1200)}px`
-              : size === "full"
-                ? "100vw"
-                : size === "lg"
-                  ? "(max-width: 809px) 100vw, 1040px"
-                  : size === "md"
-                    ? "(max-width: 809px) 100vw, 680px"
-                    : size === "xs"
-                      ? "(max-width: 809px) 40vw, 160px"
-                      : "(max-width: 809px) 100vw, 440px"
-          }
-          className="h-auto w-full object-cover"
-        />
+        <CaseStudyVisual image={image} sizes={sizes} />
       </div>
       {caption ? (
         <figcaption className="mt-3 text-center text-sm text-muted">
@@ -189,18 +215,13 @@ function CaseStudyBlocks({
                       key={image.src}
                       className={`${imageFrameClass()} w-full`}
                     >
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        width={image.width}
-                        height={image.height}
-                        unoptimized={/\.gif$/i.test(image.src)}
+                      <CaseStudyVisual
+                        image={image}
                         sizes={
                           block.columns === 2
                             ? "(max-width: 809px) 100vw, 50vw"
                             : "(max-width: 809px) 100vw, 33vw"
                         }
-                        className="h-auto w-full object-cover"
                       />
                     </div>
                   ))}
@@ -232,7 +253,6 @@ function CaseStudyBlocks({
                   style={{ ["--row-cols" as string]: cols }}
                 >
                   {block.images.map((image) => {
-                    const animated = /\.gif$/i.test(image.src);
                     const pct =
                       image.widthPct != null && image.widthPct > 0
                         ? image.widthPct
@@ -242,18 +262,13 @@ function CaseStudyBlocks({
                         key={image.src}
                         className={`${imageFrameClass()} w-full min-w-0`}
                       >
-                        <Image
-                          src={image.src}
-                          alt={image.alt}
-                          width={image.width}
-                          height={image.height}
-                          unoptimized={animated}
+                        <CaseStudyVisual
+                          image={image}
                           sizes={
                             pct != null
                               ? `(max-width: 809px) 100vw, ${Math.round((pct / 100) * 1200)}px`
                               : "(max-width: 809px) 100vw, 50vw"
                           }
-                          className="h-auto w-full object-cover"
                         />
                       </div>
                     );
@@ -284,13 +299,11 @@ function CaseStudyBlocks({
                 <div
                   className={`relative overflow-hidden bg-[#111] ${imageSizeClass({ size })}`}
                 >
-                  <video
+                  <InViewVideo
                     className="h-auto w-full"
                     src={mediaSrc(block.src)}
                     poster={block.poster}
-                    controls
-                    playsInline
-                    preload="metadata"
+                    mode="demo"
                     width={width}
                     height={height}
                   />

@@ -29,7 +29,7 @@ const zh: CaseStudyCopy = {
       blocks: [
         {
           type: "video",
-          src: "/videos/traces.mov",
+          src: "/videos/traces.mp4",
           poster: "/images/traces.png",
         },
         {
@@ -64,7 +64,7 @@ const en: CaseStudyCopy = {
       blocks: [
         {
           type: "video",
-          src: "/videos/traces.mov",
+          src: "/videos/traces.mp4",
           poster: "/images/traces.png",
         },
         {

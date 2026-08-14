@@ -81,7 +81,7 @@ const projectBases: ProjectBase[] = [
   },
   {
     id: "3",
-    cover: "/videos/ignitcube.mov",
+    cover: "/videos/ignitcube.mp4",
     coverType: "video",
     zh: {
       title: "Ignitcube",
@@ -100,7 +100,7 @@ const projectBases: ProjectBase[] = [
   },
   {
     id: "4",
-    cover: "/videos/traces.mov",
+    cover: "/videos/traces.mp4",
     coverType: "video",
     zh: {
       title: "Traces",

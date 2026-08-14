@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { GalleryCarousel } from "@/components/GalleryCarousel";
 import { GalleryMusic } from "@/components/GalleryMusic";
 import { GallerySnap } from "@/components/GallerySnap";
+import { InViewVideo } from "@/components/InViewMedia";
 import { getGallery } from "@/data/gallery";
 import { isLocale, type Locale } from "@/lib/i18n";
 
@@ -63,16 +64,13 @@ export default async function GalleryPage({ params }: PageProps) {
           >
             <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center">
               <div className="w-full max-w-[min(500px,calc((100dvh-var(--header-h)-8rem)*500/511))]">
-                <video
+                <InViewVideo
                   className="aspect-[500/511] h-auto max-h-[calc(100dvh-var(--header-h)-8rem)] w-full bg-black object-cover"
                   src={block.src}
                   poster={block.poster}
+                  mode="loop"
                   controls
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  aria-label={block.caption}
+                  ariaLabel={block.caption}
                 />
                 <div className="mt-3 text-center">
                   <p className="text-base font-medium tracking-[-0.03em] leading-[1.5]">

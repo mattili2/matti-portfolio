@@ -7,20 +7,17 @@ type CoverMediaProps = {
 };
 
 import Image from "next/image";
+import { InViewVideo } from "@/components/InViewMedia";
 import { mediaSrc } from "@/lib/media";
 
 export function CoverMedia({ src, alt, type }: CoverMediaProps) {
   if (type === "video") {
     return (
-      <video
+      <InViewVideo
         className="h-full w-full object-cover"
         src={mediaSrc(src)}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-label={alt}
+        mode="cover"
+        ariaLabel={alt}
       />
     );
   }

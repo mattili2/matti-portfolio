@@ -16,5 +16,9 @@
   ],
   "images": {
     "binding": "IMAGES"
-  }
+  },
+  "routes": [
+    { "pattern": "liyuxin.work", "custom_domain": true },
+    { "pattern": "www.liyuxin.work", "custom_domain": true }
+  ]
 }

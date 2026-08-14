@@ -18,7 +18,7 @@
   --body-leading: 1.5;
   --body-color: #333333;
   /* Shared fade for page enter + mobile menu open/close */
-  --fade-ms: 400ms;
+  --fade-ms: 280ms;
   /* Global nav chrome: default / hover / selected */
   --nav-muted: rgb(0 0 0 / 0.5);
   --nav-hover-opacity: 0.5;

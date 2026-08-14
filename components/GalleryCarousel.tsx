@@ -178,6 +178,7 @@ export function GalleryCarousel({
                   src={image.src}
                   alt={image.alt}
                   fill
+                  loading="lazy"
                   sizes={`(max-width: 809px) calc(100vw - 80px), ${maxW}px`}
                   className="object-contain"
                 />
