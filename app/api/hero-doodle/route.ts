@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
 const MAX_BYTES = 2_500_000;
-const AUTHOR_EMAIL = "yxi2nlii@gmail.com";
+const AUTHOR_EMAIL = "2039526375@qq.com";
+const DEFAULT_FROM = "Portfolio <hello@liyuxin.work>";
 
 async function sendDiscordWebhook(webhookUrl: string, bytes: ArrayBuffer, filename: string) {
   const form = new FormData();
@@ -26,7 +27,7 @@ async function sendDiscordWebhook(webhookUrl: string, bytes: ArrayBuffer, filena
 }
 
 async function sendResendEmail(apiKey: string, bytes: ArrayBuffer, filename: string) {
-  const from = process.env.HERO_DOODLE_FROM_EMAIL ?? "Portfolio <onboarding@resend.dev>";
+  const from = process.env.HERO_DOODLE_FROM_EMAIL ?? DEFAULT_FROM;
   const to = process.env.HERO_DOODLE_TO_EMAIL ?? AUTHOR_EMAIL;
   const base64 =
     typeof Buffer !== "undefined"
