@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { CaseStudyEntryRestore } from "@/components/CaseStudyEntryRestore";
-import { HeroPortraitPad } from "@/components/HeroPortraitPad";
+import { HeroPortraitBlink } from "@/components/HeroPortraitBlink";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ScrollDownArrow } from "@/components/ScrollDownArrow";
 import { getDictionary } from "@/data/dictionary";
@@ -21,23 +21,18 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <div className="w-full">
       <CaseStudyEntryRestore />
-      <section className="flex flex-col items-center pb-10 pt-[84px] md:pt-[190px]">
-        <div className="w-full px-[var(--content-pad)]">
-          <HeroPortraitPad
-            alt={dict.heroAlt}
-            clearLabel={dict.heroDrawClear}
-            colorLabel={dict.heroDrawColor}
-            sendLabel={dict.heroDrawSend}
-          />
+      <section className="flex flex-col items-center pb-6 pt-[128px] md:pb-10 md:pt-[190px]">
+        <div className="w-full">
+          <HeroPortraitBlink alt={dict.heroAlt} />
         </div>
 
         <div className="w-full px-[var(--content-pad)]">
-          <p className="mt-0 text-center text-lg font-semibold tracking-tight md:text-xl">
+          <p className="mt-6 text-center text-lg font-semibold tracking-tight md:mt-10 md:text-xl">
             UX Designer <span className="mx-2 font-normal text-muted">|</span> UX
             Researcher
           </p>
 
-          <div className="mt-6 w-full space-y-1 text-center text-[16px] font-[var(--body-weight)] leading-[var(--body-leading)] text-[var(--body-color)]">
+          <div className="mt-4 w-full space-y-1 text-center text-[16px] font-[var(--body-weight)] leading-[var(--body-leading)] text-[var(--body-color)] md:mt-6">
             {dict.bio.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}

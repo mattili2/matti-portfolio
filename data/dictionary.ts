@@ -26,9 +26,6 @@ export type Dictionary = {
   caseStudyInteractiveDemoHint: string;
   backHome: string;
   heroAlt: string;
-  heroDrawClear: string;
-  heroDrawColor: string;
-  heroDrawSend: string;
   metaDescription: string;
   langZh: string;
   langEn: string;
@@ -66,9 +63,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "试试点击页面里的内容：输入文字、开始计时，或在对话上右键编辑。",
     backHome: "← 返回首页",
     heroAlt: "李雨馨 Matti 线稿肖像",
-    heroDrawClear: "清空",
-    heroDrawColor: "切换颜色",
-    heroDrawSend: "发送给作者",
     metaDescription:
       "李雨馨 Matti — UX Designer / UX Researcher，荷兰代尔夫特理工大学工业设计学院。",
     langZh: "中",
@@ -106,9 +100,6 @@ export const dictionaries: Record<Locale, Dictionary> = {
       "Try clicking around: type a note, start the timer, or right‑click a message to edit.",
     backHome: "← Back to home",
     heroAlt: "Line portrait of Yuxin Li Matti",
-    heroDrawClear: "Clear",
-    heroDrawColor: "Switch color",
-    heroDrawSend: "Send to author",
     metaDescription:
       "Yuxin Li Matti — UX Designer / UX Researcher at Delft University of Technology, Faculty of Industrial Design Engineering.",
     langZh: "中",

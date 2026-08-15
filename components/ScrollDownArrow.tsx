@@ -10,7 +10,7 @@ export function ScrollDownArrow({ targetId, label }: ScrollDownArrowProps) {
     <a
       href={`#${targetId}`}
       aria-label={label}
-      className="nav-chrome mt-10 inline-flex items-center justify-center"
+      className="nav-chrome mt-6 inline-flex items-center justify-center md:mt-10"
       onClick={(event) => {
         event.preventDefault();
         const section = document.getElementById(targetId);
